@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.ProductAPI", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.IdentityServer", "GeekShopping.IdentityServer\GeekShopping.IdentityServer.csproj", "{2AB197A0-4763-44C5-8C82-0B1D092C4DCD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.CartAPI", "GeekShopping.CartAPI\GeekShopping.CartAPI.csproj", "{76E03F09-0D41-4D9E-870E-A8E8C7D29973}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.CouponAPI", "GeekShopping.CouponAPI\GeekShopping.CouponAPI.csproj", "{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{2AB197A0-4763-44C5-8C82-0B1D092C4DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AB197A0-4763-44C5-8C82-0B1D092C4DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AB197A0-4763-44C5-8C82-0B1D092C4DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76E03F09-0D41-4D9E-870E-A8E8C7D29973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76E03F09-0D41-4D9E-870E-A8E8C7D29973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76E03F09-0D41-4D9E-870E-A8E8C7D29973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76E03F09-0D41-4D9E-870E-A8E8C7D29973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +51,8 @@ Global
 		{009AB595-DD7A-4FE0-A7F7-5EC187528888} = {A89FE20C-494A-4FEA-90A8-4005DE457465}
 		{AD179E85-3E1D-40C9-8912-1590AF301406} = {D8965E8A-79DD-41AF-ADAB-12DDAD1CCB85}
 		{2AB197A0-4763-44C5-8C82-0B1D092C4DCD} = {D8965E8A-79DD-41AF-ADAB-12DDAD1CCB85}
+		{76E03F09-0D41-4D9E-870E-A8E8C7D29973} = {D8965E8A-79DD-41AF-ADAB-12DDAD1CCB85}
+		{EDEE10E2-AF9C-4F6D-AEBE-0429DD558726} = {D8965E8A-79DD-41AF-ADAB-12DDAD1CCB85}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F3AFD9A0-6592-407D-88FB-78E27BF78BB0}
