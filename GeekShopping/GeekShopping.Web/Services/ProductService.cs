@@ -13,29 +13,29 @@ namespace GeekShopping.Web.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<ProductModel>> FindAllProducts()
+        public async Task<IEnumerable<ProductViewModel>> FindAllProducts()
         {
-            var response = await _client.GetFromJsonAsync<List<ProductModel>>(BasePath);
+            var response = await _client.GetFromJsonAsync<List<ProductViewModel>>(BasePath);
             return response;
         }
 
-        public async Task<ProductModel> FindProductById(long id)
+        public async Task<ProductViewModel> FindProductById(long id)
         {
-            var response = await _client.GetFromJsonAsync<ProductModel>($"{BasePath}/{id}");
+            var response = await _client.GetFromJsonAsync<ProductViewModel>($"{BasePath}/{id}");
             return response;
         }
 
-        public async Task<ProductModel> CreateProduct(ProductModel product)
+        public async Task<ProductViewModel> CreateProduct(ProductViewModel product)
         {
             var response = await _client.PostAsJsonAsync(BasePath, product);
-            if(response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductModel>();
+            if(response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductViewModel>();
             throw new Exception("Something went wrong when calling API");
         }
 
-        public async Task<ProductModel> UpdateProduct(ProductModel product)
+        public async Task<ProductViewModel> UpdateProduct(ProductViewModel product)
         {
             var response = await _client.PutAsJsonAsync(BasePath, product);
-            if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductModel>();
+            if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductViewModel>();
             throw new Exception("Something went wrong when calling API");
         }
 

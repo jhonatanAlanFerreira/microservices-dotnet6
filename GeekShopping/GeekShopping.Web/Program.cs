@@ -29,8 +29,11 @@ builder.Services.AddAuthentication(options =>
     });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<TokenHandler>();
-var a = new AuthenticationProperties();
 builder.Services.AddHttpClient<IProductService, ProductService>(c => c.BaseAddress = new Uri((builder.Configuration["ServiceUrls:ProductAPI"])))
+    .AddHttpMessageHandler<TokenHandler>();
+builder.Services.AddHttpClient<ICartService, CartService>(c => c.BaseAddress = new Uri((builder.Configuration["ServiceUrls:CartAPI"])))
+    .AddHttpMessageHandler<TokenHandler>();
+builder.Services.AddHttpClient<ICouponService, CouponService>(c => c.BaseAddress = new Uri((builder.Configuration["ServiceUrls:CouponAPI"])))
     .AddHttpMessageHandler<TokenHandler>();
 
 var app = builder.Build();
