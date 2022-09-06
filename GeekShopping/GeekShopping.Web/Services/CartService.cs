@@ -1,5 +1,6 @@
 ﻿using GeekShopping.Web.Models;
 using GeekShopping.Web.Services.IServices;
+using System.Reflection;
 
 namespace GeekShopping.Web.Services
 {
@@ -54,9 +55,12 @@ namespace GeekShopping.Web.Services
             throw new Exception("Something went wrong when calling API");
         }
 
-        public async Task<CartViewModel> Checkout(CartHeaderViewModel cartHeader)
+        public async Task<CartHeaderViewModel> Checkout(CartHeaderViewModel model)
         {
-            throw new NotImplementedException();
+            var response = await _client.PostAsJsonAsync($"{BasePath}/checkout", model);
+
+            if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<CartHeaderViewModel>();
+            throw new Exception("Something went wrong when calling API");
         }
 
         public async Task<bool> ClearCart(string userId)

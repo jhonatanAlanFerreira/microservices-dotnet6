@@ -13,6 +13,6 @@ namespace GeekShopping.Web.Services.IServices
         Task<bool> RemoveCoupon(string userId);
         Task<bool> ClearCart(string userId);
 
-        Task<CartViewModel> Checkout(CartHeaderViewModel cartHeader);
+        Task<CartHeaderViewModel> Checkout(CartHeaderViewModel cartHeader);
     }
 }
