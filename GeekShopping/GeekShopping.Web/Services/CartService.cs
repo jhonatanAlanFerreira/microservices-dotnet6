@@ -55,11 +55,12 @@ namespace GeekShopping.Web.Services
             throw new Exception("Something went wrong when calling API");
         }
 
-        public async Task<CartHeaderViewModel> Checkout(CartHeaderViewModel model)
+        public async Task<object> Checkout(CartHeaderViewModel model)
         {
             var response = await _client.PostAsJsonAsync($"{BasePath}/checkout", model);
 
             if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<CartHeaderViewModel>();
+            else if (response.StatusCode.ToString().Equals("PreconditionFailed")) return "Coupon Price has changed, please confirm!";
             throw new Exception("Something went wrong when calling API");
         }
 

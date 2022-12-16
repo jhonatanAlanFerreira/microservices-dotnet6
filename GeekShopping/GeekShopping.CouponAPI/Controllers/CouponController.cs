@@ -22,7 +22,7 @@ namespace GeekShopping.CouponAPI.Controllers
         [Authorize]
         public async Task<ActionResult<CouponVO>> GetCouponByCouponCode(string couponCode)
         {
-            var coupon = await _repository.GetCouponByCouponCode(couponCode);
+            var coupon = await _repository.GetCoupon(couponCode);
             if (coupon == null) return NotFound();
             return Ok(coupon);
         }

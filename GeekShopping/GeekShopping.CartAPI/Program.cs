@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using GeekShopping.CartAPI.Config;
 using GeekShopping.CartAPI.Repository;
 using GeekShopping.CartAPI.RabbitMQSender;
+using TokenHandler = GeekShopping.CartAPI.Utils.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,8 +70,14 @@ builder.Services.AddSingleton(MappingConfig.RegisterMaps().CreateMapper());
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<ICartRepository, CartRepository>();
+builder.Services.AddScoped<ICouponRepository, CouponRepository>();
 
 builder.Services.AddSingleton<IRabbitMQMessageSender, RabbitMQMessageSender>();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddTransient<TokenHandler>();
+builder.Services.AddHttpClient<ICouponRepository, CouponRepository>(s => s.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"]))
+    .AddHttpMessageHandler<TokenHandler>();
 
 var app = builder.Build();
 
