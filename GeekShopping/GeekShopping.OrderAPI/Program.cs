@@ -1,4 +1,4 @@
-using GeekShopping.CartAPI.Repository;
+using GeekShopping.OrderAPI.Repository;
 using GeekShopping.OrderAPI.MessageConsumer;
 using GeekShopping.OrderAPI.Model.Context;
 using Microsoft.EntityFrameworkCore;

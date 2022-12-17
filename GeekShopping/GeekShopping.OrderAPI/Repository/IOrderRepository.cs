@@ -1,6 +1,6 @@
 ﻿using GeekShopping.OrderAPI.Model;
 
-namespace GeekShopping.CartAPI.Repository
+namespace GeekShopping.OrderAPI.Repository
 {
     public interface IOrderRepository
     {

@@ -1,4 +1,4 @@
-﻿using GeekShopping.CartAPI.Repository;
+﻿using GeekShopping.OrderAPI.Repository;
 using GeekShopping.OrderAPI.Messages;
 using GeekShopping.OrderAPI.Model;
 using RabbitMQ.Client;
