@@ -134,8 +134,15 @@ namespace GeekShopping.IdentityServer.Pages.Account.Register
                     }
 
                 }
+
+                else {
+                    TempData["Error"] = result.ToString();
+                    await BuildModelAsync(returnUrl);
+                    return Page();
+                } 
             }
 
+            await BuildModelAsync(returnUrl);
             return Page();
         }
 
