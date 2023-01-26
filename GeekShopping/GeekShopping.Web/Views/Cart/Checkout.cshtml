@@ -30,23 +30,24 @@
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">E-mail:</label>
-                            <input asp-for="CartHeader.Email" class="form-control" />
+                            <input asp-for="CartHeader.Email" class="form-control" type='email'/>
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">Phone Number:</label>
-                            <input asp-for="CartHeader.Phone" class="form-control" />
+
+                            <input id="phone-number" asp-for="CartHeader.Phone" class="form-control" />
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">Card Number:</label>
-                            <input asp-for="CartHeader.CardNumber" class="form-control" />
+                            <input number-only asp-for="CartHeader.CardNumber" maxlength="16" class="form-control" />
                         </div>
                         <div class="col-12">
                             <label class="col-form-label">CVV:</label>
-                            <input asp-for="CartHeader.CVV" class="form-control" />
+                            <input number-only asp-for="CartHeader.CVV" maxlength="4" class="form-control" />
                         </div>
                         <div class="col-12 pb-4">
                             <label class="col-form-label">Expiry:</label>
-                            <input asp-for="CartHeader.ExpiryMothYear" placeholder="MMYY" class="form-control" />
+                            <input asp-for="CartHeader.ExpiryMothYear" type="date" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -114,4 +115,13 @@
             </div>
         </div>
     </form>
+}
+
+@section Scripts {
+    <script src="~/lib/inputmask/inputmask.js"></script>
+    <script>
+        var selector = document.getElementById("phone-number");
+        var im = new Inputmask("99-9999999");
+        im.mask(selector);
+    </script>
 }
