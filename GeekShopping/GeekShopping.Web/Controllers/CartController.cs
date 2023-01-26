@@ -78,6 +78,11 @@ namespace GeekShopping.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(CartViewModel model)
         {
+            if (!ModelState.IsValid) {
+                TempData["Error"] = "There are invalid fields";
+                return View(await FindUserCart());
+            } 
+
             var response = await _cartService.Checkout(model.CartHeader);
 
             if (response != null && response.GetType() == typeof(string))
