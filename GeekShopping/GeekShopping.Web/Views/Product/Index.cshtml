@@ -29,13 +29,15 @@
                     <td>@product.Name</td>
                     <td>@product.CategoryName</td>
                     <td>@product.Price.ToString("c")</td>
-                    <td>
-                        <a asp-action="Update" class="btn btn-success" asp-route-id="@product.Id">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </td>
+
                     @if (User.IsInRole("Admin"))
                     {
+                        <td>
+                            <a asp-action="Update" class="btn btn-success" asp-route-id="@product.Id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+
                         <td>
                             <a asp-action="Delete" class="btn btn-danger" asp-route-id="@product.Id">
                                 <i class="fas fa-trash"></i>
