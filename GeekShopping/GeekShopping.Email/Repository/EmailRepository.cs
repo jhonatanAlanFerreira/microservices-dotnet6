@@ -20,7 +20,7 @@ namespace GeekShopping.Email.Repository
             {
                 Email = message.Email,
                 SentDate = DateTime.Now,
-                Log = $"Order - { message.OrderId } has been created successfuly"
+                Log = $"Order - {message.OrderId} has been created successfuly"
             };
 
             await using var _db = new MySQLContext(_context);

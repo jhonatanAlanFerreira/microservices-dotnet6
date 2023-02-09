@@ -9,7 +9,7 @@ namespace GeekShopping.IdentityServer.Pages.Account.Register
 
         [Required]
         public string Email { get; set; }
-        
+
         [Required]
         public string FirstName { get; set; }
 

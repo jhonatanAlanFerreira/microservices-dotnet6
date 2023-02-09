@@ -1,10 +1,10 @@
+using GeekShopping.CartAPI.Config;
 using GeekShopping.CartAPI.Model.Context;
+using GeekShopping.CartAPI.RabbitMQSender;
+using GeekShopping.CartAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using GeekShopping.CartAPI.Config;
-using GeekShopping.CartAPI.Repository;
-using GeekShopping.CartAPI.RabbitMQSender;
 using TokenHandler = GeekShopping.CartAPI.Utils.TokenHandler;
 
 var builder = WebApplication.CreateBuilder(args);

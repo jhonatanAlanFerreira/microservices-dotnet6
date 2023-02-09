@@ -10,5 +10,5 @@ namespace GeekShopping.CartAPI.Model.Context
         public DbSet<CartDetail> CartDetails { get; set; }
         public DbSet<CartHeader> CartHeaders { get; set; }
 
-	}
+    }
 }

@@ -8,7 +8,7 @@ namespace GeekShopping.ProductAPI.Config
     {
         public static MapperConfiguration RegisterMaps()
         {
-           return new MapperConfiguration(config => config.CreateMap<ProductVO, Product>().ReverseMap());
+            return new MapperConfiguration(config => config.CreateMap<ProductVO, Product>().ReverseMap());
         }
     }
 }

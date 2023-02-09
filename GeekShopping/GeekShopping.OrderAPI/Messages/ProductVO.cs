@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace GeekShopping.OrderAPI.Messages
+﻿namespace GeekShopping.OrderAPI.Messages
 {
     public class ProductVO
     {

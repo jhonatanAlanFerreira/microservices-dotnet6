@@ -28,7 +28,7 @@ namespace GeekShopping.Web.Services
         public async Task<ProductViewModel> CreateProduct(ProductViewModel product)
         {
             var response = await _client.PostAsJsonAsync(BasePath, product);
-            if(response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductViewModel>();
+            if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<ProductViewModel>();
             throw new Exception("Something went wrong when calling API");
         }
 

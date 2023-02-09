@@ -81,7 +81,7 @@ namespace GeekShopping.CartAPI.Controllers
                 CouponVO coupon = await _couponRepository.GetCoupon(vo.CouponCode);
                 if (vo.DiscountAmount != coupon.DiscountAmount) return StatusCode(412);
             }
-               
+
             vo.CartDetails = cart.CartDetails;
             vo.DateTime = DateTime.Now;
 

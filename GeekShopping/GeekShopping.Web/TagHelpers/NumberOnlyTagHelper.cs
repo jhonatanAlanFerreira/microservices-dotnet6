@@ -3,7 +3,7 @@
 namespace GeekShopping.Web.TagHelpers
 {
 
-    [HtmlTargetElement("input", Attributes  = "number-only")]
+    [HtmlTargetElement("input", Attributes = "number-only")]
     public class NumberOnlyTagHelper : TagHelper
     {
         public override void Process(TagHelperContext context, TagHelperOutput output)

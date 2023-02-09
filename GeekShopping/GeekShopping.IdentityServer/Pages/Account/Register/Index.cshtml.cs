@@ -135,11 +135,12 @@ namespace GeekShopping.IdentityServer.Pages.Account.Register
 
                 }
 
-                else {
+                else
+                {
                     TempData["Error"] = result.ToString();
                     await BuildModelAsync(returnUrl);
                     return Page();
-                } 
+                }
             }
 
             await BuildModelAsync(returnUrl);

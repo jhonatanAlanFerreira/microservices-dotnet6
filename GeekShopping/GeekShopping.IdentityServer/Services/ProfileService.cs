@@ -34,15 +34,16 @@ namespace GeekShopping.IdentityServer.Services
             if (_userManager.SupportsUserRole)
             {
                 IList<string> roles = await _userManager.GetRolesAsync(user);
-                foreach(string role in roles)
+                foreach (string role in roles)
                 {
                     claims.Add(new Claim(JwtClaimTypes.Role, role));
                     if (_roleManager.SupportsRoleClaims)
                     {
                         IdentityRole identityRole = await _roleManager.FindByNameAsync(role);
-                        if (identityRole != null) {
+                        if (identityRole != null)
+                        {
                             claims.AddRange(await _roleManager.GetClaimsAsync(identityRole));
-                        } 
+                        }
                     }
                 }
             }

@@ -1,5 +1,4 @@
 ﻿using GeekShopping.IdentityServer;
-using GeekShopping.IdentityServer.Initializer;
 using GeekShopping.IdentityServer.Model.Context;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

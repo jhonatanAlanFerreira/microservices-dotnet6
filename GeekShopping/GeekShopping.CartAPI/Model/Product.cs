@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace GeekShopping.CartAPI.Model
 {
     [Table("product")]
-    public class Product 
+    public class Product
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Column("id")]
@@ -17,7 +17,7 @@ namespace GeekShopping.CartAPI.Model
 
         [Column("price")]
         [Required]
-        [Range(1,10000)]
+        [Range(1, 10000)]
         public decimal Price { get; set; }
 
         [Column("description")]

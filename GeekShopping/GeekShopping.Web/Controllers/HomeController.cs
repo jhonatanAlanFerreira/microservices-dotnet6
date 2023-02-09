@@ -41,7 +41,7 @@ namespace GeekShopping.Web.Controllers
         [Authorize]
         public async Task<IActionResult> DetailsPost(ProductViewModel model)
         {
-            CartViewModel cart = new ()
+            CartViewModel cart = new()
             {
                 CartHeader = new CartHeaderViewModel()
                 {
@@ -63,7 +63,7 @@ namespace GeekShopping.Web.Controllers
 
             var response = await _cartService.AddItemToCart(cart);
 
-            if(response != null)
+            if (response != null)
             {
                 return RedirectToAction(nameof(Index));
             }

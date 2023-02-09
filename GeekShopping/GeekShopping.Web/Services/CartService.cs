@@ -1,6 +1,5 @@
 ﻿using GeekShopping.Web.Models;
 using GeekShopping.Web.Services.IServices;
-using System.Reflection;
 
 namespace GeekShopping.Web.Services
 {
@@ -22,7 +21,7 @@ namespace GeekShopping.Web.Services
 
         public async Task<CartViewModel> AddItemToCart(CartViewModel model)
         {
-            var response = await _client.PostAsJsonAsync($"{BasePath}/add-cart", model);;
+            var response = await _client.PostAsJsonAsync($"{BasePath}/add-cart", model); ;
             if (response.IsSuccessStatusCode) return await response.Content.ReadFromJsonAsync<CartViewModel>();
             throw new Exception("Something went wrong when calling API");
         }
