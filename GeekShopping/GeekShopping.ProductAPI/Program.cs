@@ -64,7 +64,8 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(builder.Configuration["MySQLConnection:MySQLConnectionString"], new MySqlServerVersion(new Version(8, 0, 5))));
+var mySQLConnection = builder.Environment.IsProduction() ? "MySQLConnection:MySQLConnectionStringProd" : "MySQLConnection:MySQLConnectionStringDev";
+builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(builder.Configuration[mySQLConnection], new MySqlServerVersion(new Version(8, 0, 5))));
 builder.Services.AddSingleton(MappingConfig.RegisterMaps().CreateMapper());
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

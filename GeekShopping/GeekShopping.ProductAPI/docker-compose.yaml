@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+
+  geekshopping-product-api:
+    image: geekshopping-product-api
+    build:
+      context: .
+    ports:
+      - 4441:80
+    depends_on:
+      - geekshopping-product-database
+    networks:
+      - geekshopping
+
+  geekshopping-product-database:
+    image: mariadb:10
+    ports:
+      - 3341:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: admin123
+    volumes:
+      - geekshopping-product-database:/var/lib/mysql
+    networks:
+      - geekshopping
+      
+networks: 
+    geekshopping:
+        driver: bridge
+
+volumes:
+    geekshopping-product-database:
+        driver: local    
