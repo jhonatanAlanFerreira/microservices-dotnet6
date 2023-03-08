@@ -4,6 +4,7 @@ using GeekShopping.IdentityServer.Model;
 using GeekShopping.IdentityServer.Model.Context;
 using GeekShopping.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 namespace GeekShopping.IdentityServer;
@@ -54,6 +55,13 @@ internal static class HostingExtensions
         app.UseAuthorization();
 
         app.MapRazorPages().RequireAuthorization();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var context = services.GetRequiredService<MySQLContext>();
+            context.Database.Migrate();
+        }
 
         app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>().Initialize();
 
