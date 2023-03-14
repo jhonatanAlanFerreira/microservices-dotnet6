@@ -6,6 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
@@ -23,9 +30,5 @@
 		<ProjectReference Include="..\GeekShopping.MessageBus\GeekShopping.MessageBus.csproj" />
 		<ProjectReference Include="..\GeekShopping.PaymentProcessor\GeekShopping.PaymentProcessor.csproj" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 
 </Project>
