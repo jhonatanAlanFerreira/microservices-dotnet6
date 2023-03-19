@@ -1,0 +1,57 @@
+version: '3'
+
+services:
+
+  geekshopping-rabbitmq:
+    image: rabbitmq:3-management
+    hostname: "geekshopping-rabbitmq"
+    labels:
+      NAME: "geekshopping-rabbitmq"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - geekshopping
+
+  geekshopping-database:
+    image: mariadb:10
+    ports:
+      - 3341:3306
+    environment:
+        MYSQL_ROOT_PASSWORD: admin123
+    volumes:
+      - geekshopping-database:/var/lib/mysql
+    networks:
+      - geekshopping
+
+  geekshopping-product-api:
+    image: geekshopping-product-api
+    build:
+      context: .
+      dockerfile: ProductAPIDockerfile
+    ports:
+      - 4441:80
+    depends_on:
+      - geekshopping-database
+    networks:
+      - geekshopping
+
+  geekshopping-payment-api:
+    image: geekshopping-payment-api
+    build:
+      context: .
+      dockerfile: PaymentAPIDockerfile
+    ports:
+      - 5080:80
+    depends_on:
+      - geekshopping-rabbitmq
+    networks:
+      - geekshopping
+      
+networks: 
+    geekshopping:
+        driver: bridge
+
+volumes:
+    geekshopping-database:
+        driver: local    
