@@ -33,6 +33,7 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
                 factory.UserName = "guest";
                 factory.Password = "guest";
             }
+
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: "orderpaymentprocessqueue", false, false, false, arguments: null);

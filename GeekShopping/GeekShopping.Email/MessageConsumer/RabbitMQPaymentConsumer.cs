@@ -15,15 +15,25 @@ namespace GeekShopping.Email.MessageConsumer
         private const string ExchangeName = "DirectPaymentUpdateExchange";
         private const string PaymentEmailUpdateQueueName = "PaymentEmailUpdateQueueName";
 
-        public RabbitMQPaymentConsumer(EmailRepository repository)
+        public RabbitMQPaymentConsumer(EmailRepository repository, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             _repository = repository;
-            var factory = new ConnectionFactory
+
+            var factory = new ConnectionFactory();
+
+            if (webHostEnvironment.IsDevelopment())
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest"
-            };
+                factory.HostName = configuration.GetValue<String>("RabbitMqDev:HostName");
+                factory.UserName = "guest";
+                factory.Password = "guest";
+            }
+            else
+            {
+                factory.HostName = configuration.GetValue<String>("RabbitMqProd:HostName");
+                factory.UserName = "guest";
+                factory.Password = "guest";
+            }
+
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.ExchangeDeclare(ExchangeName, ExchangeType.Direct);

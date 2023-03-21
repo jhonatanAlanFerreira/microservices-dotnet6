@@ -61,9 +61,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-string connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
+string mySQLConnection = builder.Environment.IsProduction() ? "MySQLConnection:MySQLConnectionStringProd" : "MySQLConnection:MySQLConnectionStringDev";
+string connection = builder.Configuration[mySQLConnection];
 var mysqlVersion = new MySqlServerVersion(new Version(8, 0, 5));
-
 builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, mysqlVersion));
 
 var mqBuilder = new DbContextOptionsBuilder<MySQLContext>();
