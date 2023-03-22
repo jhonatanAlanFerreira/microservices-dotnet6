@@ -110,6 +110,38 @@ services:
       - geekshopping-database
     networks:
       - geekshopping
+
+  geekshopping-identity-server:
+    image: geekshopping-identity-server
+    build:
+      context: .
+      dockerfile: IdentityServerDockerfile
+    ports:
+      - 4436:80
+    depends_on:
+      - geekshopping-database
+    networks:
+      - geekshopping
+
+  geekshopping-api-gateway:
+    image: geekshopping-api-gateway
+    build:
+      context: .
+      dockerfile: APIGatewayDockerfile
+    ports:
+      - 4481:80
+    networks:
+      - geekshopping
+
+  geekshopping-web:
+    image: geekshopping-web
+    build:
+      context: .
+      dockerfile: WebDockerfile
+    ports:
+      - 4431:80
+    networks:
+      - geekshopping
       
 networks: 
     geekshopping:
