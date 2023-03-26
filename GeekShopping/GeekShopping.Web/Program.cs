@@ -26,6 +26,7 @@ builder.Services.AddAuthentication(options =>
         options.TokenValidationParameters.RoleClaimType = "role";
         options.Scope.Add("geek_shopping");
         options.SaveTokens = true;
+        options.RequireHttpsMetadata = false;
     });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddTransient<TokenHandler>();

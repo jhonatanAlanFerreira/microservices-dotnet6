@@ -39,8 +39,8 @@ public static class Config
                     ClientId = "geek_shopping",
                     ClientSecrets = {new Secret("my_super_secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = {"https://localhost:4430/signin-oidc"},
-                    PostLogoutRedirectUris = {"https://localhost:4430/signout-callback-oidc"},
+                    RedirectUris = {"http://localhost:4431/signin-oidc"},
+                    PostLogoutRedirectUris = {"http://localhost:4431/signout-callback-oidc"},
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
