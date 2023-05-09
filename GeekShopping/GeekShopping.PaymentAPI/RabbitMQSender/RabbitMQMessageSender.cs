@@ -16,11 +16,11 @@ namespace GeekShopping.PaymentAPI.RabbitMQSender
         private const string PaymentEmailUpdateQueueName = "PaymentEmailUpdateQueueName";
         private const string PaymentOrderUpdateQueueName = "PaymentOrderUpdateQueueName";
 
-        public RabbitMQMessageSender()
+        public RabbitMQMessageSender(IConfiguration configuration)
         {
-            _hostName = "localhost";
-            _password = "guest";
-            _userName = "guest";
+            _hostName = configuration.GetValue<String>("MyRabbitMqConnection:HostName");
+            _password = configuration.GetValue<String>("MyRabbitMqConnection:Password");
+            _userName = configuration.GetValue<String>("MyRabbitMqConnection:UserName");
         }
 
         public void SendMessage(BaseMessage message)

@@ -1,6 +1,7 @@
 ﻿using GeekShopping.OrderAPI.Messages;
 using GeekShopping.OrderAPI.RabbitMQSender;
 using GeekShopping.OrderAPI.Repository;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -16,14 +17,14 @@ namespace GeekShopping.OrderAPI.MessageConsumer
         private const string ExchangeName = "FanoutPaymentUpdateExchange";
         private const string PaymentOrderUpdateQueueName = "PaymentOrderUpdateQueueName";
 
-        public RabbitMQPaymentConsumer(OrderRepository repository, IRabbitMQMessageSender rabbitMQMessageSender)
+        public RabbitMQPaymentConsumer(OrderRepository repository, IRabbitMQMessageSender rabbitMQMessageSender, IConfiguration configuration)
         {
             _repository = repository;
             var factory = new ConnectionFactory
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest"
+                HostName = configuration.GetValue<String>("MyRabbitMqConnection:HostName"),
+                UserName = configuration.GetValue<String>("MyRabbitMqConnection:UserName"),
+                Password = configuration.GetValue<String>("MyRabbitMqConnection:Password")
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();

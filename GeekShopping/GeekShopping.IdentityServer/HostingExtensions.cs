@@ -13,6 +13,7 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        Config.setConfiguration(builder.Configuration);
 
         builder.Services.AddRazorPages();
 
@@ -46,7 +47,6 @@ internal static class HostingExtensions
             app.UseDeveloperExceptionPage();
         }
 
-        app.UseHttpsRedirection();
         app.UseStaticFiles();
         app.UseRouting();
 
