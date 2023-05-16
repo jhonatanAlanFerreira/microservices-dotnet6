@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "http://192.168.0.100:4436";
+        options.Authority = builder.Configuration["ServiceUrls:IdentityServer"];
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -74,7 +74,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -18,8 +18,7 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    string mySQLConnection = builder.Environment.IsProduction() ? "MySQLConnection:MySQLConnectionStringProd" : "MySQLConnection:MySQLConnectionStringDev";
-    string connection = builder.Configuration[mySQLConnection];
+    string connection = builder.Configuration["MySQLConnection:MySQLConnectionString"];
     builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 5))));
 
     var app = builder

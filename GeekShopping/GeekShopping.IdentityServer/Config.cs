@@ -7,6 +7,12 @@ public static class Config
 {
     public const string Admin = "Admin";
     public const string Client = "Client";
+    private static IConfiguration _config;
+
+    public static void setConfiguration(IConfiguration config)
+    {
+        _config = config;
+    }
     public static IEnumerable<IdentityResource> IdentityResources =>
         new IdentityResource[]
         {
@@ -39,8 +45,8 @@ public static class Config
                     ClientId = "geek_shopping",
                     ClientSecrets = {new Secret("my_super_secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.Code,
-                    RedirectUris = {"http://localhost:4431/signin-oidc"},
-                    PostLogoutRedirectUris = {"http://localhost:4431/signout-callback-oidc"},
+                    RedirectUris = { _config.GetValue<String>("ServiceUrls:IdentityServerRedirect") }, 
+                    PostLogoutRedirectUris = { _config.GetValue<String>("ServiceUrls:IdentityServerLogout") },
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

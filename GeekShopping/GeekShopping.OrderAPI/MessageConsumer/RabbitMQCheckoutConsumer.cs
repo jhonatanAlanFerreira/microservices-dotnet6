@@ -16,26 +16,16 @@ namespace GeekShopping.OrderAPI.MessageConsumer
         private IModel _channel;
         private IRabbitMQMessageSender _rabbitMQMessageSender;
 
-        public RabbitMQCheckoutConsumer(OrderRepository repository, IRabbitMQMessageSender rabbitMQMessageSender, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public RabbitMQCheckoutConsumer(OrderRepository repository, IRabbitMQMessageSender rabbitMQMessageSender, IConfiguration configuration)
         {
             _repository = repository;
             _rabbitMQMessageSender = rabbitMQMessageSender;
-
-            var factory = new ConnectionFactory();
-
-            if (webHostEnvironment.IsDevelopment())
+            var factory = new ConnectionFactory
             {
-                factory.HostName = configuration.GetValue<String>("RabbitMqDev:HostName");
-                factory.UserName = "guest";
-                factory.Password = "guest";
-            }
-            else
-            {
-                factory.HostName = configuration.GetValue<String>("RabbitMqProd:HostName");
-                factory.UserName = "guest";
-                factory.Password = "guest";
-            }
-
+                HostName = configuration.GetValue<String>("MyRabbitMqConnection:HostName"),
+                UserName = configuration.GetValue<String>("MyRabbitMqConnection:UserName"),
+                Password = configuration.GetValue<String>("MyRabbitMqConnection:Password")
+            };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
             _channel.QueueDeclare(queue: "checkoutqueue", false, false, false, arguments: null);

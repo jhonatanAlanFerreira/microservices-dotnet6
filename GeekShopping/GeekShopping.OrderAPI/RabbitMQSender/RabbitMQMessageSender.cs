@@ -1,5 +1,6 @@
 ﻿using GeekShopping.MessageBus;
 using GeekShopping.OrderAPI.Messages;
+using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -13,20 +14,11 @@ namespace GeekShopping.OrderAPI.RabbitMQSender
         private readonly string _userName;
         private IConnection _connection;
 
-        public RabbitMQMessageSender(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public RabbitMQMessageSender(IConfiguration configuration)
         {
-            if (webHostEnvironment.IsDevelopment())
-            {
-                _hostName = configuration.GetValue<String>("RabbitMqDev:HostName");
-                _password = "guest";
-                _userName = "guest";
-            }
-            else
-            {
-                _hostName = configuration.GetValue<String>("RabbitMqProd:HostName");
-                _password = "guest";
-                _userName = "guest";
-            }
+            _hostName = configuration.GetValue<String>("MyRabbitMqConnection:HostName");
+            _password = configuration.GetValue<String>("MyRabbitMqConnection:Password");
+            _userName = configuration.GetValue<String>("MyRabbitMqConnection:UserName");
         }
 
         public void SendMessage(BaseMessage message, string queueName)

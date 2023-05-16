@@ -13,6 +13,7 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        Config.setConfiguration(builder.Configuration);
 
         builder.Services.AddRazorPages();
 

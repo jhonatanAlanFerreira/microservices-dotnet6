@@ -15,24 +15,17 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
         private IRabbitMQMessageSender _rabbitMQMessageSender;
         private readonly IProcessPayment _processPayment;
 
-        public RabbitMQPaymentConsumer(IProcessPayment processPayment, IRabbitMQMessageSender rabbitMQMessageSender, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public RabbitMQPaymentConsumer(IProcessPayment processPayment, IRabbitMQMessageSender rabbitMQMessageSender, IConfiguration configuration)
         {
             _processPayment = processPayment;
             _rabbitMQMessageSender = rabbitMQMessageSender;
-            var factory = new ConnectionFactory();
 
-            if(webHostEnvironment.IsDevelopment())
+            var factory = new ConnectionFactory
             {
-                factory.HostName = configuration.GetValue<String>("RabbitMqDev:HostName");
-                factory.UserName = "guest";
-                factory.Password = "guest";
-            }
-            else
-            {
-                factory.HostName = configuration.GetValue<String>("RabbitMqProd:HostName");
-                factory.UserName = "guest";
-                factory.Password = "guest";
-            }
+                HostName = configuration.GetValue<String>("MyRabbitMqConnection:HostName"),
+                UserName = configuration.GetValue<String>("MyRabbitMqConnection:UserName"),
+                Password = configuration.GetValue<String>("MyRabbitMqConnection:Password")
+            };
 
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();

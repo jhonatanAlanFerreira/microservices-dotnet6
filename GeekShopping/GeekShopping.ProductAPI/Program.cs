@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = "http://192.168.0.100:4436";
+        options.Authority = builder.Configuration["ServiceUrls:IdentityServer"];
         options.RequireHttpsMetadata = false;
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -65,8 +65,7 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-string mySQLConnection = builder.Environment.IsProduction() ? "MySQLConnection:MySQLConnectionStringProd" : "MySQLConnection:MySQLConnectionStringDev";
-builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(builder.Configuration[mySQLConnection], new MySqlServerVersion(new Version(8, 0, 5))));
+builder.Services.AddDbContext<MySQLContext>(options => options.UseMySql(builder.Configuration["MySQLConnection:MySQLConnectionString"], new MySqlServerVersion(new Version(8, 0, 5))));
 builder.Services.AddSingleton(MappingConfig.RegisterMaps().CreateMapper());
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
