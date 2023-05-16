@@ -35,19 +35,6 @@ internal static class HostingExtensions
         builder.Services.AddScoped<IDbInitializer, DbInitializer>();
         builder.Services.AddScoped<IProfileService, ProfileService>();
 
-        //builder.Services.ConfigureApplicationCookie(options =>
-        //{
-        //    options.Cookie.Name = "auth_cookie";
-        //    options.Cookie.SameSite = SameSiteMode.None;
-        //    options.LoginPath = new PathString("/account/errorredirect");
-        //    options.AccessDeniedPath = new PathString("/account/errorredirect");
-        //    options.Events.OnRedirectToLogin = context =>
-        //    {
-        //        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-        //        return Task.CompletedTask;
-        //    };
-        //});
-
         return builder.Build();
     }
 
