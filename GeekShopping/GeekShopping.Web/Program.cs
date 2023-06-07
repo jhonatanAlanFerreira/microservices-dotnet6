@@ -2,6 +2,9 @@ using GeekShopping.Web.Services;
 using GeekShopping.Web.Services.IServices;
 using GeekShopping.Web.Utils;
 using Microsoft.AspNetCore.Authentication;
+using System.Globalization;
+
+CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
 
 var builder = WebApplication.CreateBuilder(args);
 
